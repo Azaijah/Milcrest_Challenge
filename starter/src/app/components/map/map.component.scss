@@ -1,17 +1,26 @@
 .parent-container {
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .controls-container {
-    // Reset positioning if using this method
-    position: static;
-    padding: 10px;
-    z-index: 1; // Z-index can be adjusted or removed as needed
-  }
-  
-  #mapContainer {
-    flex-grow: 1;
-    height: 100%; // Ensure the map container takes up remaining space
-  }
-  
+  display: flex;
+  flex-direction: column;
+}
+
+.controls-container {
+  position: static;
+  padding: 10px;
+  z-index: 1; 
+}
+
+#mapContainer {
+  flex-grow: 1;
+  height: calc(100vh - 250px); 
+}
+
+.ol-popup {
+  position: absolute;
+  background-color: white;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.2);
+  padding: 15px;
+  border-radius: 10px;
+  border: 1px solid #cccccc;
+  min-width: 220px;
+  display: none;
+}
