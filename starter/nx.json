@@ -46,5 +46,9 @@
       "style": "css"
     }
   },
-  "defaultProject": "starter"
+  "defaultProject": "starter",
+  "affected": {
+    "defaultBase": "main"
+  },
+  "nxCloudAccessToken": "MGU1ZDY3NDctZjUyZS00MmUzLTgzMzctYmE3YjU4ZjJlMDZhfHJlYWQtd3JpdGU="
 }

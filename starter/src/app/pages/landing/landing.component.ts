@@ -19,6 +19,6 @@ export class LandingComponent implements AfterContentInit {
   }
 
   openDialog(): void {
-    this.dialog.open(StarterDialogComponent);
+   // this.dialog.open(StarterDialogComponent);
   }
 }
