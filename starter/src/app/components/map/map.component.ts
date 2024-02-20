@@ -7,15 +7,17 @@ import { Map as OpenMap, View } from 'ol';
 import OSM from 'ol/source/OSM';
 import TileLayer from 'ol/layer/Tile';
 import { MapDataService } from 'src/app/map-data.service'; 
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+
 
 
 
 @Component({
   selector: 'starter-map',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, MatSlideToggleModule],
   templateUrl: './map.component.html',
-  styles: ``,
+  styleUrl: './map.component.scss',
 })
 export class MapComponent implements OnInit, AfterViewInit {
   @ViewChild('mapContainer', { static: true })

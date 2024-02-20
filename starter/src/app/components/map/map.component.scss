@@ -1,0 +1,17 @@
+.parent-container {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .controls-container {
+    // Reset positioning if using this method
+    position: static;
+    padding: 10px;
+    z-index: 1; // Z-index can be adjusted or removed as needed
+  }
+  
+  #mapContainer {
+    flex-grow: 1;
+    height: 100%; // Ensure the map container takes up remaining space
+  }
+  
