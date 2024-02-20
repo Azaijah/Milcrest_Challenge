@@ -1,17 +1,14 @@
-import {
-  AfterViewInit,
-  Component,
-  ElementRef,
-  OnInit,
-  ViewChild,
-} from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { useGeographic } from 'ol/proj';
 import proj4 from 'proj4';
 import { register } from 'ol/proj/proj4';
 import { Map as OpenMap, View } from 'ol';
-import OSM from 'ol/source/OSM.js';
+import OSM from 'ol/source/OSM';
 import TileLayer from 'ol/layer/Tile';
+import { MapDataService } from 'src/app/map-data.service'; 
+
+
 
 @Component({
   selector: 'starter-map',
@@ -25,6 +22,8 @@ export class MapComponent implements OnInit, AfterViewInit {
   mapContainer!: ElementRef<HTMLElement>;
   mapComponent: OpenMap | undefined;
 
+  constructor(private mapDataService: MapDataService) {} 
+
   ngOnInit() {
     useGeographic();
     this.registerProjections();
@@ -32,6 +31,7 @@ export class MapComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit() {
     this.initMap();
+    this.addLocalVectorLayer(); 
   }
 
   private initMap() {
@@ -42,12 +42,20 @@ export class MapComponent implements OnInit, AfterViewInit {
         }),
       ],
       target: this.mapContainer.nativeElement,
-      maxTilesLoading: 64,
       view: new View({
-        center: [0, 0],
-        zoom: 2,
+        center: [121.6555, -30.7891], 
+
+        zoom: 6,
       }),
     });
+  }
+
+  private addLocalVectorLayer() {
+
+    this.mapDataService.getLocalVectorLayer()
+      .subscribe(vectorLayer => {
+        this.mapComponent?.addLayer(vectorLayer);
+      });
   }
 
   registerProjections() {
