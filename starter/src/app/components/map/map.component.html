@@ -1,6 +1,7 @@
 <div class="relative grid grid-cols-1">
   <div class="controls-container p-4">
-    <mat-slide-toggle color="primary" class="mb-2" checked="true">Show Forest Disease Risk Areas</mat-slide-toggle>
+    <mat-slide-toggle color="primary" class="mb-2" checked="true" [(ngModel)]="layerVisible" (change)="toggleLayerVisibility()"></mat-slide-toggle>>Show Forest Disease Risk Areas
   </div>
   <div #mapContainer class="h-full w-full min-h-96"></div>
 </div>
+

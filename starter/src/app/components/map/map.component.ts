@@ -10,11 +10,15 @@ import VectorLayer from 'ol/layer/Vector';
 import { MapDataService } from 'src/app/map-data.service'; 
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { Style, Fill, Stroke } from 'ol/style'; 
+import VectorSource from 'ol/source/Vector';
+import Feature from 'ol/Feature';
+import Geometry from 'ol/geom/Geometry';
+import {FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'starter-map',
   standalone: true,
-  imports: [CommonModule, MatSlideToggleModule],
+  imports: [CommonModule, MatSlideToggleModule, FormsModule],
   templateUrl: './map.component.html',
   styleUrl: './map.component.scss',
 })
@@ -22,6 +26,8 @@ export class MapComponent implements OnInit, AfterViewInit {
   @ViewChild('mapContainer', { static: true })
   mapContainer!: ElementRef<HTMLElement>;
   mapComponent: OpenMap | undefined;
+  vectorLayer: VectorLayer<VectorSource<Feature<Geometry>>> | undefined;
+  layerVisible: boolean = true; 
 
   constructor(private mapDataService: MapDataService) {} 
 
@@ -53,7 +59,7 @@ export class MapComponent implements OnInit, AfterViewInit {
   private addLocalVectorLayer() {
     this.mapDataService.getLocalVectorSource() 
       .subscribe(vectorSource => {
-        const vectorLayer = new VectorLayer({
+        this.vectorLayer = new VectorLayer({
           source: vectorSource,
           style: new Style({ 
             fill: new Fill({
@@ -64,9 +70,16 @@ export class MapComponent implements OnInit, AfterViewInit {
               width: 2,
             }),
           }),
+          visible: this.layerVisible,
         });
-        this.mapComponent?.addLayer(vectorLayer);
+        this.mapComponent?.addLayer(this.vectorLayer);
       });
+  }
+
+  toggleLayerVisibility() {
+    if (this.vectorLayer) {
+      this.vectorLayer.setVisible(!this.vectorLayer.getVisible());
+    }
   }
 
   registerProjections() {
