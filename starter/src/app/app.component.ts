@@ -9,5 +9,5 @@ import { RouterModule } from '@angular/router';
   styleUrl: './app.component.scss',
 })
 export class AppComponent {
-  title = 'starter';
+  title = 'Western Australia Forest Disease Risk Areas';
 }

@@ -6,11 +6,10 @@ import { register } from 'ol/proj/proj4';
 import { Map as OpenMap, View } from 'ol';
 import OSM from 'ol/source/OSM';
 import TileLayer from 'ol/layer/Tile';
+import VectorLayer from 'ol/layer/Vector'; 
 import { MapDataService } from 'src/app/map-data.service'; 
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
-
-
-
+import { Style, Fill, Stroke } from 'ol/style'; 
 
 @Component({
   selector: 'starter-map',
@@ -45,17 +44,27 @@ export class MapComponent implements OnInit, AfterViewInit {
       ],
       target: this.mapContainer.nativeElement,
       view: new View({
-        center: [121.6555, -30.7891], 
-
+        center: [121.6555, -30.7891],
         zoom: 6,
       }),
     });
   }
 
   private addLocalVectorLayer() {
-
-    this.mapDataService.getLocalVectorLayer()
-      .subscribe(vectorLayer => {
+    this.mapDataService.getLocalVectorSource() 
+      .subscribe(vectorSource => {
+        const vectorLayer = new VectorLayer({
+          source: vectorSource,
+          style: new Style({ 
+            fill: new Fill({
+              color: 'rgba(255, 0, 0, 0.1)',
+            }),
+            stroke: new Stroke({
+              color: '#ff0000',
+              width: 2,
+            }),
+          }),
+        });
         this.mapComponent?.addLayer(vectorLayer);
       });
   }
