@@ -2,7 +2,7 @@
 
 ## Note
 
-4 hour long project a company invited me to complete and then completely ghosted me :)
+4 hour long project a company invited me to complete.
 
 The web application reads in data from Data Western Australia specfically, "Forest Disease Risk Areas" and displays the geodata on the map as shown below.
 
