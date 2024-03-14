@@ -2,7 +2,7 @@
 
 ## Note
 
-4 hour long project a company invited me to complete.
+4 hour long project a company invited me to complete. My main background is in backend/systems programming languages and DevOps Engineering. However, I was still able to complete this project in a small timeframe showcasing my ablity to adapt to new technologies fast. 
 
 The web application reads in data from Data Western Australia specfically, "Forest Disease Risk Areas" and displays the geodata on the map as shown below.
 
